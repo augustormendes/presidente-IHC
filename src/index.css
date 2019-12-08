@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./resources/bg1.png')
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.Pass{
+  text-align:center;
+  position:relative;
+  top: 1em;
+  
+}
+
+.Cards{
+  position: relative;
+  top:5em;
+
+
+}
+.Jogador3{
+  text-align:center;
+  position:absolute;
+  left:27%;
+}
+.Jogador2{
+  position: absolute;
+  top:35%;
+  left:0.5%;
+}
+.Jogador1{
+  position: absolute;
+  top:80%;
+  left:0.5%;
+}
+.Jogador4{
+  position: absolute;
+  top: 35%;
+  right: -32%;
+}
+.Main{
+  margin: auto;
+  text-align: center;
+}
+.Pilha{
+  text-align: center;
+  position:relative;
+  top: 10em;
+}
+.PlayerInput{
+  text-align:center;
+  position:absolute;
+  top:25em;
+}
+
+.Elevated{
+  position: relative;
+  top: -4em;
+}
