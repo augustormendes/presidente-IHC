@@ -1,7 +1,21 @@
 import React from 'react'
 import {legalCardsInHand} from './Game'
+import { Button } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 import bg1 from './resources/bg1.png'
+import { styled,makeStyles } from '@material-ui/core/styles';
+
+
+
+const MyButton = styled(Button)({
+    background:"linear-gradient(45deg,#0099ff,#00ccff)",
+    marginLeft: "92vw"
+  })
 class Board extends React.Component{
+
+    state = {
+        redirect: false,
+    }
 parseCards(lista){
     let imageMap = new Map()
     let curCard
@@ -166,7 +180,6 @@ getImages(imageMap){
 render(){
     this.checkIfPlayable()
     let imageMap = this.parseCards(this.props.G.players[this.props.ctx.currentPlayer].cards)
-    
     return(
         <div>
             <div className="Jogador1">
@@ -199,8 +212,9 @@ render(){
             </div>
         <div className="Cards">
         {this.getImages(imageMap)}
+       
         </div>
-        
+        <MyButton onClick={()=>{window.location.reload()}}>Recomeçar</MyButton>
     </div>
     </div>
     )

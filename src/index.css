@@ -64,3 +64,16 @@ code {
   position: relative;
   top: -4em;
 }
+
+.paper{
+  text-align: center;
+}
+
+.title{
+  text-align: center;
+}
+
+.listItem{
+  text-align: left;
+  margin-bottom: 10%;
+}
