@@ -77,3 +77,8 @@ code {
   text-align: left;
   margin-bottom: 10%;
 }
+.optButton{
+  margin-bottom: 10%;
+  position: 'absolute';
+  left:"100%";
+}

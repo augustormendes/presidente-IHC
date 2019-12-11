@@ -6,7 +6,6 @@ import bg1 from './resources/bg1.png'
 import { styled,makeStyles } from '@material-ui/core/styles';
 import { relative } from 'path';
 import Select from 'react-select';
-
 const MyPaper = styled(Paper)({
     background:"#888383",
     padding: '0 30px',
@@ -29,12 +28,26 @@ const MyButton = styled(Button)({
     position:"relative",
     left:"88%"
   })
+  const MyButton4 = styled(Button)({
+    background:"linear-gradient(45deg,#0099ff,#00ccff)",
+    width: "30%",
+    position:"relative",
+    left:"15.5%"  })
+
+    const MyButton5 = styled(Button)({
+        background:"linear-gradient(45deg,#0099ff,#00ccff)",
+        marginBottom: "10%",
+        position:"relative",
+        left:"43%",
+
+    })
 class Board extends React.Component{
 
     state = {
         redirect: false,
         options: false,
         end: false,
+        regras: false,
         backOptions: [{value:"verde",label:"Verde"},{value:"azul",label:"Azul"}],
         dificultyOptions:[{value:"fácil",label:"Fácil"},{value:"médio",label:"Médio"},{value:"difícil",label:"Difícil"}],
         velocityOptions:[{value:"devagar",label:"Devagar"},{value:"normal",label:"Normal"},{value:"rápido",label:"Rápido"}]
@@ -174,6 +187,8 @@ getImages(imageMap){
             
             return(images)
         }
+        else{return(<h1 >selecione cartas de mesmo naipe para descarte</h1>)
+        }
     }
 
  //   checkIfPlayable(){
@@ -200,9 +215,26 @@ getImages(imageMap){
          return(<div>Vez</div>)
      }
  }
+
 render(){
     if(this.state.end){
         return(<Redirect to="/"/>)
+    }
+    if(this.state.regras){
+        return(
+            <MyPaper>
+                <ul>
+            <li className="listItem">O objetivo do jogo é acabar com as cartas da mão</li>
+            <li className="listItem">Se não há cartas na mesa, o último a jogar descarta um conjunto de cartas do mesmo naipe</li>
+            <li className="listItem">A partir daí, cada jogador pode descartar um conjunto de cartas de naipe igual</li>
+            <li className="listItem">O naipe das cartas descartadas deve ser maior ou igual ao do conjunto na mesa, e o número de cartas deve ser igual</li>
+            <li className="listItem">Ordem das cartas (O naipe não importa!)</li>
+            </ul>
+                <img src={require("./resources/regrasordem.png")} height="60%" width="60%"></img>
+                <MyButton4 onClick={()=>{this.setState({regras:false})}}>Entendi</MyButton4>
+               
+            </MyPaper>
+            )
     }
     if(this.state.options){
         return(
@@ -212,6 +244,7 @@ render(){
                  <div className='listItem'>Cor de fundo <Select options={this.state.backOptions} style={{position:"relative",left:"70%",width:"10%"}}></Select></div>
                  <div className='listItem'>Dificuldade <Select options={this.state.dificultyOptions} style={{position:"relative",left:"70%",width:"10%"}}>teste</Select></div>
                  <div className='listItem'>Velocidade  <Select options={this.state.velocityOptions} style={{position:"relative",left:"70%",width:"10%"}}>teste</Select></div>
+                 <div><MyButton5 onClick={()=>{this.setState({regras:true})}}>Regras</MyButton5></div>
                 <MyButton3 onClick={()=>{this.setState({end:true})}}>Encerrar</MyButton3>
             </MyPaper>
         )
@@ -244,6 +277,7 @@ render(){
             <div className='Pilha'>
             {this.cartasNaPilha()}
             </div>
+
 <div className='PlayerInput'>
 <div className='Pass'>
           {this.botaoPasse()}

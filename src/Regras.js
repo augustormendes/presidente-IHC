@@ -35,9 +35,9 @@ const MyPaper = styled(Paper)({
         <MyPaper>
             <ul>
             <li className="listItem">O objetivo do jogo é acabar com as cartas da mão</li>
-            <li className="listItem">Cada jogador tem um título, sendo o primeiro o presidente</li>
-            <li className="listItem">No começo de cada rodada o presidente descarta uma carta ou conjunto de cartas de valor igual</li>
-            <li className="listItem">A partir daí, cada jogador deve descartar o mesmo número de cartas iguais de valor maior ou igual</li>
+            <li className="listItem">Se não há cartas na mesa, o último a jogar descarta um conjunto de cartas do mesmo naipe</li>
+            <li className="listItem">A partir daí, cada jogador pode descartar um conjunto de cartas de naipe igual</li>
+            <li className="listItem">O naipe das cartas descartadas deve ser maior ou igual ao do conjunto na mesa, e o número de cartas deve ser igual</li>
             <li className="listItem">Ordem das cartas (O naipe não importa!)</li>
             </ul>
             <img src={require("./resources/regrasordem.png")} height="60%" width="60%"></img>
