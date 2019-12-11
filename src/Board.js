@@ -1,20 +1,43 @@
 import React from 'react'
 import {legalCardsInHand} from './Game'
-import { Button } from '@material-ui/core';
+import { Button,Paper } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import bg1 from './resources/bg1.png'
 import { styled,makeStyles } from '@material-ui/core/styles';
+import { relative } from 'path';
+import Select from 'react-select';
 
-
+const MyPaper = styled(Paper)({
+    background:"#888383",
+    padding: '0 30px',
+    width: "40%",
+    margin:"auto",
+    textAlign:"left"
+  })
 
 const MyButton = styled(Button)({
     background:"linear-gradient(45deg,#0099ff,#00ccff)",
     marginLeft: "92vw"
   })
+
+  const MyButton2 = styled(Button)({
+    background:"linear-gradient(45deg,#0099ff,#00ccff)",
+    
+  })
+  const MyButton3 = styled(Button)({
+    background:"linear-gradient(45deg,#cc0000,#ff3300)",
+    position:"relative",
+    left:"88%"
+  })
 class Board extends React.Component{
 
     state = {
         redirect: false,
+        options: false,
+        end: false,
+        backOptions: [{value:"verde",label:"Verde"},{value:"azul",label:"Azul"}],
+        dificultyOptions:[{value:"fácil",label:"Fácil"},{value:"médio",label:"Médio"},{value:"difícil",label:"Difícil"}],
+        velocityOptions:[{value:"devagar",label:"Devagar"},{value:"normal",label:"Normal"},{value:"rápido",label:"Rápido"}]
     }
 parseCards(lista){
     let imageMap = new Map()
@@ -178,10 +201,26 @@ getImages(imageMap){
      }
  }
 render(){
+    if(this.state.end){
+        return(<Redirect to="/"/>)
+    }
+    if(this.state.options){
+        return(
+            <MyPaper>
+                <MyButton2 onClick={()=>{this.setState({options:false})}}>Voltar</MyButton2>
+                 <div style={{textAlign:"center",marginBottom: "10%"}}>Opções</div>
+                 <div className='listItem'>Cor de fundo <Select options={this.state.backOptions} style={{position:"relative",left:"70%",width:"10%"}}></Select></div>
+                 <div className='listItem'>Dificuldade <Select options={this.state.dificultyOptions} style={{position:"relative",left:"70%",width:"10%"}}>teste</Select></div>
+                 <div className='listItem'>Velocidade  <Select options={this.state.velocityOptions} style={{position:"relative",left:"70%",width:"10%"}}>teste</Select></div>
+                <MyButton3 onClick={()=>{this.setState({end:true})}}>Encerrar</MyButton3>
+            </MyPaper>
+        )
+    }
     this.checkIfPlayable()
     let imageMap = this.parseCards(this.props.G.players[this.props.ctx.currentPlayer].cards)
     return(
         <div>
+            <MyButton onClick={()=>{this.setState({options:true})}}>Opções</MyButton>
             <div className="Jogador1">
                 {this.vez(0)}
                 <img src={require('./resources/player-icon.png')} height="6%" width="6%"/>
