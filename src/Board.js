@@ -212,7 +212,9 @@ getImages(imageMap){
  vez(i){
      if(this.props.ctx.currentPlayer == i){
         console.log("Bon giorno")
-         return(<div>Vez</div>)
+       return( <div style={{ backgroundColor: 'red', width: 50, height: 50, alignItems: 'center', flexDirection: 'column', borderRadius: 50, display: 'flex', justifyContent: 'center' }}>
+        <p style={{ display: 'flex', alignItems: 'center' }}>Vez</p>
+    </div>)
      }
  }
 
